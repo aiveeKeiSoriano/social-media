@@ -112,7 +112,7 @@ export default function Signup() {
                                         pointerEvents="none"
                                         children={<Icon as={AiOutlineLock} />}
                                     />
-                                    <Input type={showPass ? "text" : "password"} placeholder="Confirm Password" ref={confirmpass} />
+                                    <Input type="password" placeholder="Confirm Password" ref={confirmpass} />
                                 </InputGroup>
                                 <input accept="image/*" id="picture" style={{ display: "none" }} value={""} type="file" name="picture" onChange={(e) => setImage(e.target.files[0])} />
                                 <label htmlFor="picture" style={{ display: "flex", gap: ".5em", alignItems: "center" }}>
