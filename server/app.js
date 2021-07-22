@@ -1,6 +1,6 @@
 require("dotenv").config()
 
-const PORT = 3333
+const PORT = process.env.PORT || 3333
 
 const mongoose = require("mongoose")
 const express = require("express")

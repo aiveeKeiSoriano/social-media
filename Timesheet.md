@@ -25,6 +25,6 @@ Estimated time: 10hrs
     19 Jul '21 
     14:10 - 15:08 : Setting up the project, cloning repository, installing modules, creating react app (58m)
     15:35 - 15:50 : Debugging mongodb service not starting (15m)
-    14:50 - :
+    14:50 - 15:57 : Heroku set up and debugging
 
 Milestone 1 completed in around 8 hours 56mins.
