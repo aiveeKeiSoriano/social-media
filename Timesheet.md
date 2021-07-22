@@ -19,14 +19,17 @@ Estimated time: 10hrs
     18:28 - 19:36 : Can now sign up and sign in using front end (1h8m)
     -----------
     22 Jul '21
-    13:31 - 14:50 : Added loading indicators. And manage redirects when logged in or logged out (persisting logged in)
+    13:31 - 14:50 : Added loading indicators. And manage redirects when logged in or logged out (persisting logged in) (1h19m)
 
 ### MISC
     19 Jul '21 
     14:10 - 15:08 : Setting up the project, cloning repository, installing modules, creating react app (58m)
     15:35 - 15:50 : Debugging mongodb service not starting (15m)
-    14:50 - 15:57 : Heroku set up and debugging
-    16:20 - 17:03 : Set-up Heroku. Deploy to netlify. Trying image download
-    17:20 - :
+    ----------
+    22 Jul '21
+    14:50 - 15:57 : Heroku set up and debugging heroku crashing (1h7m)
+    16:20 - 17:03 : Complete set-up Heroku. Deploy to netlify. Trying image download (43m)
+    17:20 - 18:00 : Added endpoint for image to check if image is being saved in heroku (40m)
+    19:20 - :
 
-Milestone 1 completed in around 8 hours 56mins.
+Milestone 1 completed in around 14 hours 2 mins.
