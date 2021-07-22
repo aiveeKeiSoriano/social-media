@@ -26,5 +26,7 @@ Estimated time: 10hrs
     14:10 - 15:08 : Setting up the project, cloning repository, installing modules, creating react app (58m)
     15:35 - 15:50 : Debugging mongodb service not starting (15m)
     14:50 - 15:57 : Heroku set up and debugging
+    16:20 - 17:03 : Set-up Heroku. Deploy to netlify. Trying image download
+    17:20 - :
 
 Milestone 1 completed in around 8 hours 56mins.

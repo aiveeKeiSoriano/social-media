@@ -22,7 +22,10 @@ export default function Feed() {
     return (
         <>
             {logged ?
-                <div className="feed">FEEED</div>
+                
+                <div className="feed">
+                    <img src={"https://social-media-aiveekei.herokuapp.com/image/" + user.picture} alt="sample" />
+                    FEEED</div>
                 : <Loading />
             }
             </>
