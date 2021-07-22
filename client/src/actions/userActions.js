@@ -78,6 +78,8 @@ export const getUser = () => {
     return async (dispatch) => {
         try {
             let response = await axios.get("/me")
+            // response.data.picture = "http://localhost:3333/image/" + response.data.picture
+            response.data.picture = "https://social-media-aiveekei.herokuapp.com/image/" + response.data.picture
             dispatch(userRetrieved(response.data))
         }
         catch (e) {

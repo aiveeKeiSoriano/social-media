@@ -8,7 +8,6 @@ export default function Feed() {
 
     let user = useSelector(state => state.auth.user)
     let logged = useSelector(state => state.auth.logged)
-    console.log(user)
 
     let history = useHistory()
 
@@ -24,7 +23,7 @@ export default function Feed() {
             {logged ?
                 
                 <div className="feed">
-                    <img src={"https://social-media-aiveekei.herokuapp.com/image/" + user.picture} alt="sample" />
+                    <img src={user.picture} alt="sample" />
                     FEEED</div>
                 : <Loading />
             }
