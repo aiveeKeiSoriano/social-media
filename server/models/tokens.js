@@ -8,7 +8,7 @@ const TokenSchema = new mongoose.Schema({
     user: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: "User",
-        require: true
+        required: true
     }
 }, { timestamps: true })
 

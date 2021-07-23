@@ -38,16 +38,9 @@ router.post("/signin", asyncHandler(async (req, res) => {
     res.status(200).json({ access_token, refresh_token });
 }));
 
-const getUser = (req) => {
-    const header = req.headers["authorization"];
-    const token = header.split(" ")[1];
-    const user = jwt.decode(token);
-    return user;
-};
-
 router.post("/signout", asyncHandler(async (req, res) => {
-    const user = getUser(req);
-    const result = await tokenController.removeToken(user.email);
+    const { refresh_token } = req.body;
+    const result = await tokenController.removeToken(refresh_token);
     res.status(201).json({ message: "Signed-out successfully" });
 }));
 

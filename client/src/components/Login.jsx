@@ -1,4 +1,4 @@
-import Wrapper from "./Wrapper";
+import FormWrapper from "./FormWrapper";
 import { Center, VStack, Heading, Input, InputGroup, InputLeftElement, InputRightElement, Button, Icon, Text } from "@chakra-ui/react";
 import { Link, useHistory } from "react-router-dom"
 import { useEffect, useRef, useState } from "react";
@@ -14,7 +14,7 @@ export default function Login() {
     let username = useRef()
     let password = useRef()
 
-    let error = useSelector(state => state.auth.error)
+    let error = useSelector(state => state.auth.formError)
     let logged = useSelector(state => state.auth.logged)
 
     let history = useHistory()
@@ -51,7 +51,7 @@ export default function Login() {
     return (
         <>
             {logged === false ?
-                <Wrapper>
+                <FormWrapper>
                     <Center w="100%" maxW="350px" p={8}>
                         <VStack spacing={10} w="100%">
                             <Heading size="xl">
@@ -86,7 +86,7 @@ export default function Login() {
                             <Link to="/signup"><Text color="blue.500">Don't have an account? Sign up.</Text></Link>
                         </VStack>
                     </Center>
-                </Wrapper>
+                </FormWrapper>
                 : <Loading />
             }
             </>

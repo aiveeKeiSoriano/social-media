@@ -11,12 +11,8 @@ const addNewToken = async ({ refresh_token, email }) => {
     return newToken
 }
 
-const removeToken = async (email) => {
-    const user = await User.findOne({ email })
-    if (!user) {
-        throw new Error("User not found")
-    }
-    const token = await Token.deleteOne({ user: user._id })
+const removeToken = async (refresh_token) => {
+    const token = await Token.deleteOne({ refresh_token })
     return token
 }
 

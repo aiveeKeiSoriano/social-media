@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export default function initAxios(history) {
-  axios.defaults.baseURL = "https://social-media-aiveekei.herokuapp.com/";
-  // axios.defaults.baseURL = "http://localhost:3333"
+  // axios.defaults.baseURL = "https://social-media-aiveekei.herokuapp.com/";
+  axios.defaults.baseURL = "http://localhost:3333"
 
   axios.interceptors.request.use(
     function (req) {

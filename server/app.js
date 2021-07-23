@@ -11,6 +11,7 @@ const fs = require('fs')
 
 const authRouter = require("./routes/auth")
 const meRouter = require("./routes/me")
+const postRouter = require("./routes/post")
 
 const app = express()
 
@@ -35,7 +36,8 @@ const verifyToken = (req, res, next) => {
         res.status(403).json({message: "Access token required"})
     }
     try {
-        jwt.decode(token);
+        let user = jwt.decode(token);
+        req.userEmail = user.email
         next()
     }
     catch (e) {
@@ -46,6 +48,7 @@ const verifyToken = (req, res, next) => {
 
 app.use("/auth", authRouter)
 app.use("/me", verifyToken, meRouter)
+app.use("/posts", verifyToken, postRouter)
 
 app.get("/", (req, res) => {
     res.status(200).send("Welcome to backend")
@@ -54,7 +57,6 @@ app.get("/", (req, res) => {
 app.get("/image/:filename", (req, res) => {
     let filename = req.params.filename
     let path = __dirname + "/uploads/" + filename
-    console.log(path)
     res.download(path, (err) => {
         if (err) {
             console.log(err, err.message)

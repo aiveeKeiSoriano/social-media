@@ -1,21 +1,27 @@
 import axios from "axios"
 
 export const USER_RETRIEVED = "USER_RETRIEVED"
-export const FORM_ERROR = "FORM_ERROR"
 export const LOGGED_OUT = "LOGGED_OUT"
+export const FORM_ERROR = "FORM_ERROR"
+export const SET_ERROR = "SET_ERROR"
 
 export const userRetrieved = (user) => ({
     type: USER_RETRIEVED,
     payload: user
 })
 
-export const formError = (err) => ({
-    type: FORM_ERROR,
+export const loggedOut = () => ({
+    type: LOGGED_OUT
+})
+
+export const setError = (err) => ({
+    type: SET_ERROR,
     payload: err
 })
 
-export const loggedOut = () => ({
-    type: LOGGED_OUT
+export const formError = (err) => ({
+    type: FORM_ERROR,
+    payload: err
 })
 
 export const signUp = (data, history) => {
@@ -78,12 +84,27 @@ export const getUser = () => {
     return async (dispatch) => {
         try {
             let response = await axios.get("/me")
-            // response.data.picture = "http://localhost:3333/image/" + response.data.picture
-            response.data.picture = "https://social-media-aiveekei.herokuapp.com/image/" + response.data.picture
+            response.data.picture = "http://localhost:3333/image/" + response.data.picture
+            // response.data.picture = "https://social-media-aiveekei.herokuapp.com/image/" + response.data.picture
             dispatch(userRetrieved(response.data))
         }
         catch (e) {
-            console.log(e.response)
+            dispatch(setError(e.message))
+        }
+    }
+}
+
+export const logOut = () => {
+    return async (dispatch) => {
+        try {
+            let refresh_token = localStorage.getItem("refresh_token")
+            await axios.post("/auth/signout", { refresh_token })
+            localStorage.removeItem("refresh_token")
+            localStorage.removeItem("access_token")
+            dispatch(loggedOut())
+        }
+        catch (e) {
+            dispatch(setError(e.message))
         }
     }
 }

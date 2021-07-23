@@ -30,6 +30,27 @@ Estimated time: 10hrs
     14:50 - 15:57 : Heroku set up and debugging heroku crashing (1h7m)
     16:20 - 17:03 : Complete set-up Heroku. Deploy to netlify. Trying image download (43m)
     17:20 - 18:00 : Added endpoint for image to check if image is being saved in heroku (40m)
-    19:20 - :
+    19:20 - 20:00 : Wrote readme files
+    ----------
+    23 Jul '21
+    12:40 - 13:30 : Made error page for network error, when server is not running
 
 Milestone 1 completed in around 14 hours 2 mins.
+
+## Milestone 2
+Estimated Time: 8hrs
+
+### Part 3
+    23 Jul '21
+    14:07 - 14:29 : Made post model. Added create, delete controllers.
+    14:40 - 15:30 : Made routes endpoint for creating new post, deleting a post, and getting your posts
+
+### Part 4
+    23 Jul '21
+    16:00 - 17:03 : Made Nav component, logout button, and implemented log-out
+    17:13 - 18:29 : Made add new post floating button, dialog, and empty feed prompt
+    18:45 - 19:45 : Made list of posts in feed
+
+server package.json
+userActions
+axios-config

@@ -1,32 +1,43 @@
-
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import Loading from "./Loading"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { fetchFeed } from "../actions/postsActions"
+import AuthedWrapper from "./AuthedWrapper"
+import PostSkeleton from "./PostSkeleton"
+import { VStack, Heading, Box, Flex, Text } from "@chakra-ui/react"
+import NewPostDialog from "./NewPostDialog"
+import Post from "./Post"
 
 export default function Feed() {
 
-    let user = useSelector(state => state.auth.user)
-    let logged = useSelector(state => state.auth.logged)
+    let dispatch = useDispatch()
+    let feed = useSelector(state => state.posts.feed)
 
-    let history = useHistory()
+    let [time, setTime] = useState(new Date())
 
     useEffect(() => {
-        if (logged === false) {
-            history.push("/login")
-        }
+        dispatch(fetchFeed())
+        let timeInterval = setInterval(() => setTime(new Date()), 60000)
+        return () => clearInterval(timeInterval)
         // eslint-disable-next-line
-    }, [logged])
+    }, [])
 
     return (
-        <>
-            {logged ?
-                
-                <div className="feed">
-                    <img src={user.picture} alt="sample" />
-                    FEEED</div>
-                : <Loading />
+        <AuthedWrapper>
+            {
+                feed?.length === 0 ?
+                    <Heading size="lg" align="center" p="2em" color="gray.400">Follow more people to see their posts</Heading>
+                    : !feed ?
+                        <VStack w="100%" maxW="900px" p={8} align="flex-start" spacing={4}>
+                            <PostSkeleton />
+                            <PostSkeleton />
+                        </VStack>
+                        :
+                        <Flex w="100%" direction="column" maxW="900px" p={8} align="flex-start">
+                            {feed.map(el => <Post key={el._id} post={el} time={time}/>)}
+                            <Box w="100%" h="100px"><Text color="transparent" style={{userSelect: "none"}}>The white space after the feed is not showing. Why?</Text></Box>
+                        </Flex>
             }
-            </>
+            <NewPostDialog />
+        </AuthedWrapper>
     )
 }

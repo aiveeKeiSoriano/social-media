@@ -1,5 +1,5 @@
 import { Spinner } from "@chakra-ui/react"
-import Wrapper from "./Wrapper"
+import Wrapper from "./FormWrapper"
 
 export default function Loading() {
     return (

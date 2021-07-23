@@ -14,8 +14,8 @@ const getUser = (req) => {
 };
 
 router.get("/", asyncHandler(async (req, res) => {
-    const user = getUser(req);
-    let result = await userController.getUser(user.email)
+    const user = req.userEmail
+    let result = await userController.getUser(user)
     res.status(200).send(result)
 }))
 
