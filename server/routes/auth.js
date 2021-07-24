@@ -27,14 +27,14 @@ router.post("/signup", multipart.single("picture"), asyncHandler(async (req, res
 
 router.post("/signin", asyncHandler(async (req, res) => {
     const user = await userController.checkUser(req.body);
-    const payload = { email: user.email };
+    const payload = { username: user.username };
     const access_token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
         expiresIn: process.env.ACCESS_TOKEN_EXPIRES,
     });
     const refresh_token = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, {
         expiresIn: process.env.REFRESH_TOKEN_EXPIRES,
     });
-    await tokenController.addNewToken({ refresh_token, email: user.email });
+    await tokenController.addNewToken({ refresh_token, username: user.username });
     res.status(200).json({ access_token, refresh_token });
 }));
 
@@ -49,13 +49,13 @@ router.post("/token", asyncHandler(async (req, res) => {
     let user
     try {
         user = jwt.verify(refresh_token, process.env.REFRESH_TOKEN_SECRET);
+        await tokenController.checkToken(refresh_token);
     }
     catch (e) {
         res.status(403).json({ message: "refresh token expired" })
     }
-    await tokenController.checkToken(refresh_token);
     let access_token = jwt.sign(
-        { email: user.email },
+        { username: user.username },
         process.env.ACCESS_TOKEN_SECRET,
         { expiresIn: process.env.ACCESS_TOKEN_EXPIRES }
     );

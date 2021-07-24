@@ -14,7 +14,7 @@ const getUser = (req) => {
 };
 
 router.get("/", asyncHandler(async (req, res) => {
-    const user = req.userEmail
+    const user = req.username
     let result = await userController.getUser(user)
     res.status(200).send(result)
 }))
@@ -23,7 +23,7 @@ router.use((err, req, res, next) => {
     if (res.headersSent) {
         return next(err);
     }
-    res.status(401).json({ message: err.message });
+    res.status(400).json({ message: err.message });
 });
 
 module.exports = router

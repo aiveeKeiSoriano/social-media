@@ -44,16 +44,71 @@ const checkUser = async ({ username, password }) => {
     }
 }
 
-const getUser = async (email) => {
-    let user = await User.findOne({ email })
+const getUser = async (username) => {
+    let user = await User.findOne({ username }).populate("following").populate("followers")
     if (!user) {
         throw new Error("User not found")
     }
-    return user
+    let followers = user.followers.map(el => ({ username: el._doc.username, picture: el._doc.picture }))
+    let following = user.following.map(el => ({ username: el._doc.username, picture: el._doc.picture }))
+    let temp = { ...user._doc, following, followers }
+    delete temp.password
+    return temp
+}
+
+const followUser = async (meUsername, username) => {
+    let meUser = await User.findOne({ username: meUsername })
+    if (!meUser) {
+        throw new Error("Request user not found")
+    }
+    let targetUser = await User.findOne({ username })
+    if (!targetUser) {
+        throw new Error("Target user not found")
+    }
+    if (meUser.username === username) {
+        throw new Error("Cannot follow self")
+    }
+    if (meUser.following.includes(targetUser._id)) {
+        throw new Error("You are already following this user")
+    }
+    meUser.following.push(targetUser)
+    await meUser.save()
+    targetUser.followers.push(meUser)
+    await targetUser.save()
+    return "Followed"
+}
+
+const unfollowUser = async (meUsername, username) => {
+    let meUser = await User.findOne({ username: meUsername })
+    if (!meUser) {
+        throw new Error("Request user not found")
+    }
+    let targetUser = await User.findOne({ username })
+    if (!targetUser) {
+        throw new Error("Target user not found")
+    }
+    if (meUser.username === username) {
+        throw new Error("Cannot unfollow self")
+    }
+    if (!meUser.following.includes(targetUser._id)) {
+        throw new Error("You are not following this user")
+    }
+    await User.updateOne({ username: meUsername }, { $pull: { following: targetUser } } )
+    await User.updateOne({ username }, { $pull: { followers: meUser } })
+    return "Unfollowed"
+}
+
+const getUsersList = async () => {
+    let list = await User.find()
+    let removedSensitiveInfo = list.map(el => ({ username: el._doc.username, picture: el._doc.picture, followersTotal: el._doc.followers.length }))
+    return removedSensitiveInfo
 }
 
 module.exports = {
     createNewUser,
     checkUser,
-    getUser
+    getUser,
+    followUser,
+    unfollowUser,
+    getUsersList
 }

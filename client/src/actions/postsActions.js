@@ -1,4 +1,5 @@
 import axios from "axios"
+import URL from "../baseURL"
 
 export const FEED_RETRIEVED = "FEED_RETRIEVED"
 export const ADD_POST_FEEDBACK = "ADD_POST_FEEDBACK"
@@ -18,7 +19,7 @@ export const fetchFeed = () => {
         try {
             let response = await axios.get("/posts")
             console.log(response.data)
-            let posts = response.data.map(el => ({...el, author: {...el.author, picture: "http://localhost:3333/image/" + el.author.picture}}))
+            let posts = response.data.map(el => ({ ...el, author: { ...el.author, picture: `${URL}/image/${el.author.picture}` }}))
             dispatch(feedRetrieved(posts))
         }
         catch (e) {

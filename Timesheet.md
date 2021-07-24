@@ -51,6 +51,14 @@ Estimated Time: 8hrs
     17:13 - 18:29 : Made add new post floating button, dialog, and empty feed prompt
     18:45 - 19:45 : Made list of posts in feed
 
+### Part 5
+    24 Jul '21
+    22:30 - 23:46 : Made follow and unfollow endpoints and endpoint for list of users
+
+### Part 6
+    25 Jul '21
+    01:21 - 02:11 : Started making suggestion component and arrange ui positions
+
 server package.json
 userActions
 axios-config

@@ -1,8 +1,8 @@
 const Post = require("../models/post")
 const User = require("../models/user")
 
-const createNewPost = async (content, email) => {
-    let user = await User.findOne({ email })
+const createNewPost = async (content, username) => {
+    let user = await User.findOne({ username })
     if (!user) {
         throw new Error("User not found")
     }
@@ -11,9 +11,9 @@ const createNewPost = async (content, email) => {
     return newPost
 }
 
-const deletePost = async (inputId, email) => {
+const deletePost = async (inputId, username) => {
     let id = mongoose.mongo.ObjectID(inputId)
-    let user = await User.findOne({ email })
+    let user = await User.findOne({ username })
     if (!user) {
         throw new Error("User not found")
     }
@@ -28,9 +28,9 @@ const deletePost = async (inputId, email) => {
     return deleted
 }
 
-const likePost = async (inputId, email) => {
+const likePost = async (inputId, username) => {
     let id = mongoose.mongo.ObjectID(inputId)
-    let user = await User.findOne({ email })
+    let user = await User.findOne({ username })
     if (!user) {
         throw new Error("User not found")
     }
@@ -45,9 +45,9 @@ const likePost = async (inputId, email) => {
     await post.save()
 }
 
-const unlikePost = async (inputId, email) => {
+const unlikePost = async (inputId, username) => {
     let id = mongoose.mongo.ObjectID(inputId)
-    let user = await User.findOne({ email })
+    let user = await User.findOne({ username })
     if (!user) {
         throw new Error("User not found")
     }
@@ -58,12 +58,12 @@ const unlikePost = async (inputId, email) => {
     if (!post.likes.includes(user._id)) {
         throw new Error("You can't unlike what you didn't like")
     }
-    let updatedPost = await Post.updateOne({ _id: id }, { $pull: { like: user._id } })
+    let updatedPost = await Post.updateOne({ _id: id }, { $pull: { like: user } })
     return updatedPost
 }
 
-const getPosts = async (email) => {
-    let user = await User.findOne({ email })
+const getPosts = async (username) => {
+    let user = await User.findOne({ username })
     if (!user) {
         throw new Error("User not found")
     }

@@ -5,17 +5,17 @@ const postController = require("../controllers/postController")
 const router = express.Router()
 
 router.get("/", asyncHandler(async (req, res) => {
-    let result = await postController.getPosts(req.userEmail)
+    let result = await postController.getPosts(req.username)
     res.status(200).json(result)
 }))
 
 router.post("/", asyncHandler(async (req, res) => {
-    let result = await postController.createNewPost(req.body.content, req.userEmail)
+    let result = await postController.createNewPost(req.body.content, req.username)
     res.status(201).json(result)
 }))
 
 router.delete("/:id", asyncHandler(async (req, res) => {
-    let result = await postController.deletePost(req.params.id, req.userEmail)
+    let result = await postController.deletePost(req.params.id, req.username)
     res.status(201).json({message: "Deleted successfully"})
 }))
 

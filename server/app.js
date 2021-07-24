@@ -12,6 +12,7 @@ const fs = require('fs')
 const authRouter = require("./routes/auth")
 const meRouter = require("./routes/me")
 const postRouter = require("./routes/post")
+const usersRouter = require("./routes/users")
 
 const app = express()
 
@@ -37,7 +38,7 @@ const verifyToken = (req, res, next) => {
     }
     try {
         let user = jwt.decode(token);
-        req.userEmail = user.email
+        req.username = user.username
         next()
     }
     catch (e) {
@@ -49,9 +50,10 @@ const verifyToken = (req, res, next) => {
 app.use("/auth", authRouter)
 app.use("/me", verifyToken, meRouter)
 app.use("/posts", verifyToken, postRouter)
+app.use("/users", verifyToken, usersRouter)
 
 app.get("/", (req, res) => {
-    res.status(200).send("Welcome to backend")
+    res.status(200).sendFile(__dirname + "/README.md")
 })
 
 app.get("/image/:filename", (req, res) => {

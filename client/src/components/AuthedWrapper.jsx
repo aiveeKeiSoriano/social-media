@@ -1,5 +1,5 @@
 
-import { useEffect } from "react";
+import { useEffect} from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Loading from "./Loading"
@@ -21,9 +21,9 @@ export default function Feed({ children }) {
     return (
         <>
             {logged ?
-                <Flex w="100%" h="100vh" direction="column" bg="gray.100" overflow="hidden">
+                <Flex w="100%" h="100vh" direction="column" bg="gray.100"  overflow="hidden">
                     <Nav />
-                    <Flex w="100%" justifyContent="center" flex="1" m={1} overflowY="scroll">
+                    <Flex w="100%" justifyContent="center" flex="1" m={1} overflow="hidden">
                         {children}
                     </Flex>
                 </Flex>

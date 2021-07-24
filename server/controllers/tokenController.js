@@ -1,8 +1,8 @@
 const Token = require("../models/tokens")
 const User = require("../models/user")
 
-const addNewToken = async ({ refresh_token, email }) => {
-    let user = await User.findOne({ email })
+const addNewToken = async ({ refresh_token, username }) => {
+    let user = await User.findOne({ username })
     if (!user) {
         throw new Error("User not found")
     }

@@ -15,7 +15,12 @@ export default function Post({ post, time }) {
         if (diff < 8.64e+7) {
             return Math.floor(diff/3.6e+6) + "h"
         }
-        return new Date(date).toLocaleString()
+        if (diff < 6.048e+8) {
+            return Math.floor(diff/8.64e+7) + "d"
+        }
+        let splitDate = new Date(date).toLocaleString().split(",")
+        let splitTime = splitDate[1].split(":")
+        return splitDate[0] + splitTime[0] + ":" +  splitTime[1] +  splitTime[2].substring(3)
     }
 
     return (
