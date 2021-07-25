@@ -7,7 +7,7 @@ export default function Nav() {
     let dispatch = useDispatch()
 //maxW="1100px"
     return (
-        <Center boxShadow="md" w="100vw" bg="white" >
+        <Center boxShadow="md" h="80px" w="100vw" bg="white" position="fixed" zIndex="1">
             <Flex w="100%"  justify="space-between" p=".8em 2em" align="center">
                 <Heading size="xl" color="blue.500">ShoutOut</Heading>
                 <Menu>

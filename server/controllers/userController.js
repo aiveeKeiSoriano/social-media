@@ -93,8 +93,9 @@ const unfollowUser = async (meUsername, username) => {
     if (!meUser.following.includes(targetUser._id)) {
         throw new Error("You are not following this user")
     }
-    await User.updateOne({ username: meUsername }, { $pull: { following: targetUser } } )
-    await User.updateOne({ username }, { $pull: { followers: meUser } })
+    console.log(targetUser)
+    await User.updateOne({ username: meUsername }, { $pull: { following: targetUser._id } } )
+    await User.updateOne({ username }, { $pull: { followers: meUser._id } })
     return "Unfollowed"
 }
 

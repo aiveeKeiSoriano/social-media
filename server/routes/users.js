@@ -23,7 +23,7 @@ router.use((err, req, res, next) => {
     if (res.headersSent) {
         return next(err);
     }
-    console.log(err.message)
+    console.log(err)
     res.status(401).json({ message: err.message });
 });
 

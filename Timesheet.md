@@ -1,5 +1,6 @@
 ## Milestone 1
 Estimated time: 10hrs
+
 ### Part 1
     19 Jul '21 
     15:08 - 15:33 : Wrote user model, user controller, and parts of auth route (25m)
@@ -30,35 +31,38 @@ Estimated time: 10hrs
     14:50 - 15:57 : Heroku set up and debugging heroku crashing (1h7m)
     16:20 - 17:03 : Complete set-up Heroku. Deploy to netlify. Trying image download (43m)
     17:20 - 18:00 : Added endpoint for image to check if image is being saved in heroku (40m)
-    19:20 - 20:00 : Wrote readme files
+    19:20 - 20:00 : Wrote readme files (40m)
     ----------
     23 Jul '21
-    12:40 - 13:30 : Made error page for network error, when server is not running
+    12:40 - 13:30 : Catch error and made error page for network error, when server is not running (50m)
 
-Milestone 1 completed in around 14 hours 2 mins.
+Milestone 1 completed in around 14 hours 15 mins.
 
 ## Milestone 2
 Estimated Time: 8hrs
 
 ### Part 3
     23 Jul '21
-    14:07 - 14:29 : Made post model. Added create, delete controllers.
-    14:40 - 15:30 : Made routes endpoint for creating new post, deleting a post, and getting your posts
+    14:07 - 14:29 : Made post model. Added create, delete controllers. (22m)
+    14:40 - 15:30 : Made routes endpoint for creating new post, deleting a post, and getting some posts (50m)
 
 ### Part 4
     23 Jul '21
-    16:00 - 17:03 : Made Nav component, logout button, and implemented log-out
-    17:13 - 18:29 : Made add new post floating button, dialog, and empty feed prompt
-    18:45 - 19:45 : Made list of posts in feed
+    16:00 - 17:03 : Made Nav component, logout button, and implemented log-out (1h3m)
+    17:13 - 18:29 : Made add new post floating button, dialog, and empty feed prompt (1h16m)
+    18:45 - 19:45 : Made list of posts in feed (1h)
 
 ### Part 5
     24 Jul '21
-    22:30 - 23:46 : Made follow and unfollow endpoints and endpoint for list of users
+    22:30 - 23:46 : Made follow and unfollow endpoints and endpoint for list of users (1h16m)
 
 ### Part 6
     25 Jul '21
-    01:21 - 02:11 : Started making suggestion component and arrange ui positions
+    01:21 - 02:11 : Started making suggestion component and arrange ui positions (50m)
+    ----------
+    26 Jul '21
+    01:15 - 02:16 : Make suggestion card list and implement following a user through suggestion (1h1m)
+
+Milestone 2 completed in around 7 hours 38 mins.
 
 server package.json
-userActions
-axios-config

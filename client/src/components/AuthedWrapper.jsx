@@ -21,9 +21,9 @@ export default function Feed({ children }) {
     return (
         <>
             {logged ?
-                <Flex w="100%" h="100vh" direction="column" bg="gray.100"  overflow="hidden">
+                <Flex w="100%" direction="column" bg="gray.100" >
                     <Nav />
-                    <Flex w="100%" justifyContent="center" flex="1" m={1} overflow="hidden">
+                    <Flex w="100%" justifyContent="center" flex="1" mt="80px">
                         {children}
                     </Flex>
                 </Flex>

@@ -1,4 +1,4 @@
-import { ADD_POST_FEEDBACK, FEED_RETRIEVED } from "../actions/postsActions"
+import { ADD_POST_FEEDBACK, FEED_RETRIEVED, RESET_POST_STATE } from "../actions/postsActions"
 
 const initialState = {}
 
@@ -8,6 +8,8 @@ export default function postReducer(state = initialState, action) {
             return { ...state, feed: action.payload }
         case ADD_POST_FEEDBACK:
             return { ...state, addPostFeedback: action.payload }
+        case RESET_POST_STATE:
+            return initialState
         default:
             return state
     }

@@ -59,7 +59,7 @@ export default function NewPostDialog() {
         <>
             <IconButton
                 onClick={onOpen}
-                pos="absolute"
+                pos="fixed"
                 bottom="2em"
                 right="3em"
                 w="60px"

@@ -58,7 +58,7 @@ const unlikePost = async (inputId, username) => {
     if (!post.likes.includes(user._id)) {
         throw new Error("You can't unlike what you didn't like")
     }
-    let updatedPost = await Post.updateOne({ _id: id }, { $pull: { like: user } })
+    let updatedPost = await Post.updateOne({ _id: id }, { $pull: { like: user._id } })
     return updatedPost
 }
 

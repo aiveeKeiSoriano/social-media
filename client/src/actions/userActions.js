@@ -1,5 +1,7 @@
 import axios from "axios"
 import URL from "../baseURL"
+import { resetFollowState } from "./followActions"
+import { resetPostState } from "./postsActions"
 
 export const USER_RETRIEVED = "USER_RETRIEVED"
 export const LOGGED_OUT = "LOGGED_OUT"
@@ -85,7 +87,7 @@ export const getUser = () => {
     return async (dispatch) => {
         try {
             let response = await axios.get("/me")
-            response.data.picture = `${URL}/image/${response.data.picture}`
+            response.data.picture = `${URL}image/${response.data.picture}`
             dispatch(userRetrieved(response.data))
         }
         catch (e) {
@@ -101,6 +103,8 @@ export const logOut = () => {
             await axios.post("/auth/signout", { refresh_token })
             localStorage.removeItem("refresh_token")
             localStorage.removeItem("access_token")
+            dispatch(resetPostState())
+            dispatch(resetFollowState())
             dispatch(loggedOut())
         }
         catch (e) {

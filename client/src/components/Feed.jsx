@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { fetchFeed } from "../actions/postsActions"
 import AuthedWrapper from "./AuthedWrapper"
 import PostSkeleton from "./PostSkeleton"
-import { VStack, Heading, Box, Flex, Text } from "@chakra-ui/react"
+import { VStack, Heading, Flex } from "@chakra-ui/react"
 import NewPostDialog from "./NewPostDialog"
 import Post from "./Post"
 import Suggestions from "./Suggestions"
@@ -13,17 +13,18 @@ const CustomFlex = styled.div`
     display: flex;
     width: 100%;
     justify-content: center;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
 
-    &::-webkit-scrollbar {
+    /* &::-webkit-scrollbar {
         display: none;
-    }
+    } */
 `
 
 export default function Feed() {
 
     let dispatch = useDispatch()
     let feed = useSelector(state => state.posts.feed)
+    let user = useSelector(state => state.auth.user)
 
     let [time, setTime] = useState(new Date())
 
@@ -34,9 +35,19 @@ export default function Feed() {
         // eslint-disable-next-line
     }, [])
 
+    useEffect(() => {
+        setTime(new Date())
+    }, [feed])
+
+    useEffect(() => {
+        dispatch(fetchFeed())
+        // eslint-disable-next-line
+    }, [user])
+
     return (
         <AuthedWrapper>
-            <Flex w="100%">
+            <Flex w="100%" align="flex-end">
+                <Suggestions />
                 <Flex w="calc(100% - 300px)" h="100%" position="relative">
                     <CustomFlex>
                         {
@@ -50,13 +61,11 @@ export default function Feed() {
                                     :
                                     <Flex w="100%" direction="column" maxW="900px" p={8} align="flex-start">
                                         {feed.map(el => <Post key={el._id} post={el} time={time} />)}
-                                        <Box w="100%" h="100px"><Text color="transparent" style={{ userSelect: "none" }}>The white space after the feed is not showing. Why?</Text></Box>
                                     </Flex>
                         }
                     </CustomFlex>
                     <NewPostDialog />
                 </Flex>
-                <Suggestions />
             </Flex>
         </AuthedWrapper>
     )
