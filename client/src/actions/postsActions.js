@@ -28,7 +28,7 @@ export const fetchFeed = () => {
             dispatch(feedRetrieved(posts))
         }
         catch (e) {
-            console.log(e)
+            dispatch(addPostFeedback(false))
         }
     }
 }

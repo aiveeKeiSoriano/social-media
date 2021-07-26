@@ -29,7 +29,6 @@ export default function Feed() {
     let [time, setTime] = useState(new Date())
 
     useEffect(() => {
-        dispatch(fetchFeed())
         let timeInterval = setInterval(() => setTime(new Date()), 60000)
         return () => clearInterval(timeInterval)
         // eslint-disable-next-line
@@ -40,7 +39,9 @@ export default function Feed() {
     }, [feed])
 
     useEffect(() => {
-        dispatch(fetchFeed())
+        if (user) {
+            dispatch(fetchFeed())
+        }
         // eslint-disable-next-line
     }, [user])
 

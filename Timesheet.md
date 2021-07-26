@@ -62,6 +62,11 @@ Estimated Time: 8hrs
     ----------
     26 Jul '21
     01:15 - 02:16 : Make suggestion card list and implement following a user through suggestion (1h1m)
+    13:54 - 14:17 : Make suggestion skeleton and if empty, an empty prompt
+
+### MISC
+    26 Jul '21
+    14:19 - 15:00 : Add suggestion/follow error indicator, add login/signup loading button indicator
 
 Milestone 2 completed in around 7 hours 38 mins.
 

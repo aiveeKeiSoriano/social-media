@@ -7,6 +7,7 @@ export const USER_RETRIEVED = "USER_RETRIEVED"
 export const LOGGED_OUT = "LOGGED_OUT"
 export const FORM_ERROR = "FORM_ERROR"
 export const SET_ERROR = "SET_ERROR"
+export const SET_LOADING = "SET_LOADING"
 
 export const userRetrieved = (user) => ({
     type: USER_RETRIEVED,
@@ -27,11 +28,17 @@ export const formError = (err) => ({
     payload: err
 })
 
+export const setLoading = (bool) => ({
+    type: SET_LOADING,
+    payload: bool
+})
+
 export const signUp = (data, history) => {
     return async (dispatch) => {
         try {
             await axios.post("/auth/signup", data)
             dispatch(formError(""))
+            dispatch(setLoading(false))
             history.push("/login")
         }
         catch (err) {
@@ -57,6 +64,7 @@ export const logIn = (data) => {
             let { access_token, refresh_token } = response.data
             localStorage.setItem("access_token", access_token)
             localStorage.setItem("refresh_token", refresh_token)
+            dispatch(setLoading(false))
             dispatch(getUser())
         }
         catch (err) {

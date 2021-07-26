@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom"
 import { useEffect, useRef, useState } from "react";
 import { AiOutlineUser, AiOutlineLock, AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import { useDispatch, useSelector } from "react-redux";
-import { formError, logIn } from "../actions/userActions";
+import { formError, logIn, setLoading } from "../actions/userActions";
 import Loading from "./Loading"
 
 export default function Login() {
@@ -16,6 +16,7 @@ export default function Login() {
 
     let error = useSelector(state => state.auth.formError)
     let logged = useSelector(state => state.auth.logged)
+    let loading = useSelector(state => state.auth.loading)
 
     let history = useHistory()
 
@@ -41,6 +42,7 @@ export default function Login() {
             "username": username.current.value,
             "password": password.current.value
         }
+        dispatch(setLoading(true))
         dispatch(logIn(data))
     }
 
@@ -79,7 +81,11 @@ export default function Login() {
                                         children={showPass ? <Icon as={AiOutlineEye} /> : <Icon as={AiOutlineEyeInvisible} />} />
                                 </InputGroup>
                                 <Center w="100%">
-                                    <Button colorScheme="blue" onClick={submitForm}>Submit</Button>
+                                    {loading ?
+                                        <Button colorScheme="blue" w="100px" isLoading />
+                                        :
+                                        <Button colorScheme="blue" w="100px" onClick={submitForm}>Submit</Button>
+                                    }
                                 </Center>
                                 <Text color="red.500" fontSize="sm">{error}</Text>
                             </VStack>
@@ -89,6 +95,6 @@ export default function Login() {
                 </FormWrapper>
                 : <Loading />
             }
-            </>
+        </>
     )
 }

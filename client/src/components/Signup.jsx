@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom"
 import { useEffect, useRef, useState } from "react";
 import { AiOutlineUser, AiOutlineLock, AiOutlineEye, AiOutlineCamera, AiOutlineEyeInvisible, AiOutlineMail } from "react-icons/ai"
 import { useDispatch, useSelector } from "react-redux"
-import { formError, signUp } from "../actions/userActions";
+import { formError, setLoading, signUp } from "../actions/userActions";
 import Loading from "./Loading"
 
 export default function Signup() {
@@ -13,6 +13,7 @@ export default function Signup() {
     let [image, setImage] = useState()
     let error = useSelector(state => state.auth.error)
     let logged = useSelector(state => state.auth.logged)
+    let loading = useSelector(state => state.auth.loading)
 
     let username = useRef()
     let email = useRef()
@@ -59,6 +60,8 @@ export default function Signup() {
         formData.append('password', password.current.value)
         if (image) formData.append('picture', image)
 
+        
+        dispatch(setLoading(true))
         dispatch(signUp(formData, history))
     }
 
@@ -120,7 +123,11 @@ export default function Signup() {
                                     {image?.name}
                                 </label>
                                 <Center w="100%">
-                                    <Button colorScheme="blue" onClick={submitForm}>Submit</Button>
+                                {loading ?
+                                        <Button colorScheme="blue" w="100px" isLoading />
+                                        :
+                                        <Button colorScheme="blue" w="100px" onClick={submitForm}>Submit</Button>
+                                    }
                                 </Center>
                                 <Text color="red.500" fontSize="sm">{error}</Text>
                             </VStack>

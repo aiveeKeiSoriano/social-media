@@ -1,4 +1,4 @@
-import {  FORM_ERROR, LOGGED_OUT, SET_ERROR, USER_RETRIEVED } from "../actions/userActions";
+import {  FORM_ERROR, LOGGED_OUT, SET_ERROR, SET_LOADING, USER_RETRIEVED } from "../actions/userActions";
 
 const initialState = {}
 
@@ -12,6 +12,8 @@ export default function userReducer(state = initialState, action) {
             return { ...state, user: null, logged: false }
         case FORM_ERROR:
             return { ...state, formError: action.payload }
+        case SET_LOADING:
+            return { ...state, loading: action.payload }
         default:
             return state
     }
