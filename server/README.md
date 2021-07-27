@@ -40,7 +40,7 @@ Sample Response Object:
 ```
 
 OPTIONAL: Profile picture can be sent using multipart/form-data content-type and sending a FormData in the body
-
+&nbsp;
 
 
 ### POST `/auth/signin`
@@ -70,7 +70,7 @@ Sample Response Object:
   "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNhbXBsZSIsImlhdCI6MTYyNzM4NDM2NCwiZXhwIjoxNjI3OTg5MTY0fQ.ATHV-07X2fB8cdmuXZpXCzI6xkGPKAjBwdIHdv596MI"
 }
 ```
-
+&nbsp;
 
 
 ### POST `/auth/signout/`
@@ -99,7 +99,7 @@ Sample Response Object:
   "message": "Signed-out successfully"
 }
 ```
-
+&nbsp;
 
 
 ### POST `/auth/token`
@@ -127,7 +127,7 @@ Sample Response Object:
   "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNhbXBsZSIsImlhdCI6MTYyNzM4NDU2NSwiZXhwIjoxNjI3Mzg4MTY1fQ.4Jg1eZlWlNbzuvDow6gqkfoAa0CAq3z0ZBZ410n24Go"
 }
 ```
-
+&nbsp;
 
 
 ### GET `/me`
@@ -153,13 +153,13 @@ Sample Response Object:
   "__v": 0
 }
 ```
-
+&nbsp;
 
 
 ### GET `/image/:filename`
 
 Response: image file
-
+&nbsp;
 
 
 ### GET `/users`
@@ -188,7 +188,7 @@ Sample Response Array:
   }
 ]
 ```
-
+&nbsp;
 
 
 ### GET `/users/:username`
@@ -214,7 +214,7 @@ Sample Response Object:
   "__v": 0
 }
 ```
-
+&nbsp;
 
 
 ### POST `/users/:username/follow`
@@ -234,7 +234,7 @@ Sample Response Object:
   "message": "Followed successfully"
   }
 ```
-
+&nbsp;
 
 
 ### POST `/users/:username/unfollow`
@@ -254,7 +254,7 @@ Sample Response Object:
   "message": "Unfollowed successfully"
   }
 ```
-
+&nbsp;
 
 
 ### GET `/users/:username/posts`
@@ -287,7 +287,7 @@ Sample Response Array:
 ```
 
 Empty array if user doesn't have posts
-
+&nbsp;
 
 
 ### GET `/posts`
@@ -320,7 +320,7 @@ Sample Response Array:
 ```
 
 Empty array if requesting user doesn't have any posts and not following other users
-
+&nbsp;
 
 
 ### POST `/posts`
@@ -355,7 +355,7 @@ Sample Response Object:
   "__v": 0
 }
 ```
-
+&nbsp;
 
 
 ### DELETE `/posts/:id`
@@ -373,7 +373,7 @@ Request Headers:
   "message": "Deleted successfully"
   }
 ```
-
+&nbsp;
 
 
 ### POST `/posts/:id/like`
@@ -391,7 +391,7 @@ Request Headers:
   "message": "Liked successfully"
   }
 ```
-
+&nbsp;
 
 
 ### POST `/posts/:id/unlike`
