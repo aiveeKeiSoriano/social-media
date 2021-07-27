@@ -41,6 +41,8 @@ Sample Response Object:
 
 OPTIONAL: Profile picture can be sent using multipart/form-data content-type and sending a FormData in the body
 
+
+
 ### POST `/auth/signin`
 
 Sample Request Headers:
@@ -69,6 +71,8 @@ Sample Response Object:
 }
 ```
 
+
+
 ### POST `/auth/signout/`
 
 Sample Request Headers:
@@ -96,6 +100,8 @@ Sample Response Object:
 }
 ```
 
+
+
 ### POST `/auth/token`
 
 Request Headers:
@@ -122,6 +128,8 @@ Sample Response Object:
 }
 ```
 
+
+
 ### GET `/me`
 
 Request Headers:
@@ -146,9 +154,13 @@ Sample Response Object:
 }
 ```
 
+
+
 ### GET `/image/:filename`
 
 Response: image file
+
+
 
 ### GET `/users`
 
@@ -177,6 +189,8 @@ Sample Response Array:
 ]
 ```
 
+
+
 ### GET `/users/:username`
 
 Request Headers:
@@ -201,6 +215,8 @@ Sample Response Object:
 }
 ```
 
+
+
 ### POST `/users/:username/follow`
 
 Request Headers:
@@ -219,6 +235,8 @@ Sample Response Object:
   }
 ```
 
+
+
 ### POST `/users/:username/unfollow`
 
 Request Headers:
@@ -236,6 +254,8 @@ Sample Response Object:
   "message": "Unfollowed successfully"
   }
 ```
+
+
 
 ### GET `/users/:username/posts`
 
@@ -268,6 +288,8 @@ Sample Response Array:
 
 Empty array if user doesn't have posts
 
+
+
 ### GET `/posts`
 
 Request Headers:
@@ -298,6 +320,8 @@ Sample Response Array:
 ```
 
 Empty array if requesting user doesn't have any posts and not following other users
+
+
 
 ### POST `/posts`
 
@@ -332,6 +356,8 @@ Sample Response Object:
 }
 ```
 
+
+
 ### DELETE `/posts/:id`
 
 Request Headers:
@@ -348,6 +374,8 @@ Request Headers:
   }
 ```
 
+
+
 ### POST `/posts/:id/like`
 
 Request Headers:
@@ -363,6 +391,7 @@ Request Headers:
   "message": "Liked successfully"
   }
 ```
+
 
 
 ### POST `/posts/:id/unlike`
