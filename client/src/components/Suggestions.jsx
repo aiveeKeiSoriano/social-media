@@ -42,7 +42,7 @@ export default function Suggestions() {
 
     return (
         <Sticky>
-            <Heading size="md" w="100%" textAlign="center">People you can follow</Heading>
+            <Heading fontSize="23px" w="100%" textAlign="center">People you can follow</Heading>
             {error ?
                 <VStack p={4} w="100%" spacing={2}>
                     <Text fontSize="md" color="gray.400">

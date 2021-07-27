@@ -1,3 +1,5 @@
+const mongoose = require("mongoose")
+
 const Post = require("../models/post")
 const User = require("../models/user")
 
@@ -17,11 +19,11 @@ const deletePost = async (inputId, username) => {
     if (!user) {
         throw new Error("User not found")
     }
-    let post = await Post.findOne({ _id: id })
+    let post = await Post.findOne({ _id: id }).populate("author")
     if (!post) {
         throw new Error("Post not found")
     }
-    if (user._id !== post.author) {
+    if (username != post.author.username) {
         throw new Error("Cannot delete someone else's post")
     }
     let deleted = await Post.deleteOne({ _id: id })
@@ -43,6 +45,7 @@ const likePost = async (inputId, username) => {
     }
     post.likes.push(user)
     await post.save()
+    return "Liked!"
 }
 
 const unlikePost = async (inputId, username) => {
@@ -58,7 +61,7 @@ const unlikePost = async (inputId, username) => {
     if (!post.likes.includes(user._id)) {
         throw new Error("You can't unlike what you didn't like")
     }
-    let updatedPost = await Post.updateOne({ _id: id }, { $pull: { like: user._id } })
+    let updatedPost = await Post.updateOne({ _id: id }, { $pull: { likes: user._id } })
     return updatedPost
 }
 
@@ -67,9 +70,19 @@ const getPosts = async (username) => {
     if (!user) {
         throw new Error("User not found")
     }
-    let posts = await Post.find({ author: [...user.following, user._id] }).sort("-createdAt").populate("author")
-    let removedAuthorInfo = posts.map(el => ({ ...el._doc, author: { username: el._doc.author.username, picture: el._doc.author.picture } }) )
-    return removedAuthorInfo 
+    let posts = await Post.find({ author: [...user.following, user._id] }).sort("-createdAt").populate("author").populate("likes")
+    let removeUnnecessaryInfo = posts.slice(0,20).map(el => ({ ...el._doc, likes: el._doc.likes.map(el2 => el2._doc.username), author: { username: el._doc.author.username, picture: el._doc.author.picture } }) )
+    return removeUnnecessaryInfo
+}
+
+const getUserPosts = async (username) => {
+    let user = await User.findOne({ username })
+    if (!user) {
+        throw new Error("User not found")
+    }
+    let list = await Post.find({ author: user._id }).sort("-createdAt").populate("author").populate("likes")
+    let removeUnnecessaryInfo = list.map(el => ({ ...el._doc, likes: el._doc.likes.map(el2 => el2._doc.username), author: { username: el._doc.author.username, picture: el._doc.author.picture } }) )
+    return removeUnnecessaryInfo
 }
 
 module.exports = {
@@ -77,5 +90,6 @@ module.exports = {
     deletePost,
     likePost,
     unlikePost,
-    getPosts
+    getPosts,
+    getUserPosts
 }

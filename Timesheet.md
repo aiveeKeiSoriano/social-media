@@ -62,12 +62,38 @@ Estimated Time: 8hrs
     ----------
     26 Jul '21
     01:15 - 02:16 : Make suggestion card list and implement following a user through suggestion (1h1m)
-    13:54 - 14:17 : Make suggestion skeleton and if empty, an empty prompt
+    13:54 - 14:17 : Make suggestion skeleton and if empty, an empty prompt (23m)
 
 ### MISC
     26 Jul '21
-    14:19 - 15:00 : Add suggestion/follow error indicator, add login/signup loading button indicator
+    14:19 - 15:00 : Add suggestion/follow error indicator, add login/signup loading button indicator (41m)
 
-Milestone 2 completed in around 7 hours 38 mins.
+Milestone 2 completed in around 8 hours 42 mins.
 
-server package.json
+## Milestone 3
+Estimated Time: 5hrs
+
+### Part 7
+    26 Jul '21
+    16:07 - 16:57 : Makes feed up to 20 posts only and added the likes display (50m)
+
+### Part 8
+    This was done in milestone 2
+
+### Part 9
+    26 Jul '21
+    17:01 - 18:42 : Made profile page and implement follow/unfollow using profile page. (1h41m)
+    27 Jul '21
+    13:06 - 13:38 : Posts display in profile page (32m)
+    14:07 - 14:30 : Polished post display in profile page (23m)
+
+### Part 10
+    27 Jul '21
+    14:43 - 15:30 : Implement like/unlike in both feed and profile
+    16:08 - 16:31 : Prevent multiple fast click on like and follow
+
+### MISC
+    27 Jul '21
+    16:31 - 16:43 : Enable add new post in profile
+    17:03 - 18:09 : Implement delete post 
+    18:30 - 19:29 : Wrote readme files

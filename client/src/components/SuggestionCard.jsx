@@ -2,7 +2,9 @@ import { VStack, HStack, Heading, Circle, AspectRatio, Image, Button, Text } fro
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 import { followUser } from "../actions/followActions";
+import defaultavatar from "../images/defaultavatar.jpg"
 
 const CustomCard = styled.div`
     display: flex;
@@ -28,22 +30,26 @@ export default function SuggestionCard({ user }) {
         dispatch(followUser(user.username))
     }
 
+    let [image, setImage] = useState(user.picture)
+
     return (
         <CustomCard >
             <HStack spacing={4}>
-                <Circle boxShadow="base" size="50px" overflow="hidden">
-                    <AspectRatio w="100%" ratio={1}>
-                        <Image src={user.picture} alt="avatar" objectFit="cover" />
-                    </AspectRatio>
-                </Circle>
+                <Link to={`/profile/${user.username}`}>
+                    <Circle boxShadow="base" size="50px" overflow="hidden">
+                        <AspectRatio w="100%" ratio={1}>
+                            <Image src={image} onError={() => setImage(defaultavatar)} alt="avatar" objectFit="cover" />
+                        </AspectRatio>
+                    </Circle>
+                </Link>
                 <VStack spacing={0} align="flex-start">
-                    <Heading size="sm">{user.username}</Heading>
+                    <Link to={`/profile/${user.username}`}><Heading _hover={{ textDecoration: "underline" }} size="sm">{user.username}</Heading></Link>
                     <Text fontSize="xs" color="gray.500">{user.followersTotal} followers</Text>
                 </VStack>
             </HStack>
-            {followed ? 
+            {followed ?
                 <Button size="xs" colorScheme="blue">Following</Button>
-                : 
+                :
                 <Button onClick={follow} variant="outline" size="xs" colorScheme="blue">Follow</Button>
             }
         </CustomCard>

@@ -38,7 +38,6 @@ export const signUp = (data, history) => {
         try {
             await axios.post("/auth/signup", data)
             dispatch(formError(""))
-            dispatch(setLoading(false))
             history.push("/login")
         }
         catch (err) {
@@ -64,7 +63,6 @@ export const logIn = (data) => {
             let { access_token, refresh_token } = response.data
             localStorage.setItem("access_token", access_token)
             localStorage.setItem("refresh_token", refresh_token)
-            dispatch(setLoading(false))
             dispatch(getUser())
         }
         catch (err) {

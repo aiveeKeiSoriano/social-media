@@ -26,7 +26,7 @@ export const fetchSuggestions = () => {
             let response = await axios.get("/users")
             let currentFollowing = getState().auth.user.following.map(el => el.username)
             let list = response.data.filter(el => !currentFollowing.includes(el.username) && el.username !== getState().auth.user.username)
-            let pictureURL = list.map(el => ({...el, picture: `${URL}image/${el.picture}`}))
+            let pictureURL = list.slice(0, 10).map(el => ({...el, picture: `${URL}image/${el.picture}`}))
             dispatch(suggestionsRetrieved(pictureURL))
         }
         catch (e) {
@@ -42,7 +42,20 @@ export const followUser = (username) => {
             dispatch(getUser())
         }
         catch (e) {
-            dispatch(suggestionsError(e.message))
+            console.log(e.message)
+        }
+
+    }
+}
+
+export const unfollowUser = (username) => {
+    return async (dispatch) => {
+        try {
+            await axios.post(`/users/${username}/unfollow`)
+            dispatch(getUser())
+        }
+        catch (e) {
+            console.log(e.message)
         }
 
     }

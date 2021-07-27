@@ -46,7 +46,10 @@ export default function Login() {
         dispatch(logIn(data))
     }
 
-    useEffect(() => dispatch(formError(""))
+    useEffect(() => {
+        dispatch(setLoading(false))
+        dispatch(formError(""))
+    }
         // eslint-disable-next-line
         , [])
 

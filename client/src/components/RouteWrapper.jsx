@@ -8,6 +8,7 @@ import Landing from "./Landing"
 import { checkLogIn } from "../actions/userActions"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
+import Profile from "./Profile"
 
 export default function RouteWrapper() {
 
@@ -32,6 +33,7 @@ export default function RouteWrapper() {
             <Route path="/feed">
                 <Feed />
             </Route>
+            <Route path={`/profile/:username`} component={Profile}/>
             <Route path="/">
                 <Landing />
             </Route>

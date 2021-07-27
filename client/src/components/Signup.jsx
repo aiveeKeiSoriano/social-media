@@ -65,7 +65,10 @@ export default function Signup() {
         dispatch(signUp(formData, history))
     }
 
-    useEffect(() => dispatch(formError(""))
+    useEffect(() => {
+        dispatch(setLoading(false))
+        dispatch(formError(""))
+    }
         // eslint-disable-next-line
         , [])
 

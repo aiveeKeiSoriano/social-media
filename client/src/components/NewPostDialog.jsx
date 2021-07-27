@@ -17,8 +17,12 @@ import { AddIcon } from '@chakra-ui/icons'
 import { useEffect, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { addNewPost, addPostFeedback } from "../actions/postsActions"
+import { useLocation, useParams } from "react-router-dom"
 
 export default function NewPostDialog() {
+
+    let location = useLocation()
+    let params = useParams()
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     let postFeedback = useSelector(state => state.posts.addPostFeedback)
@@ -30,7 +34,10 @@ export default function NewPostDialog() {
 
     let post = () => {
         if (!input.current.value) return
-        dispatch(addNewPost(input.current.value, onClose))
+        if (location.pathname === "/feed") {
+            dispatch(addNewPost(input.current.value, "feed"))
+        }
+        else dispatch(addNewPost(input.current.value, "profile", params.username))
         onClose()
         input.current.value = ""
     }
