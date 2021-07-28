@@ -26,7 +26,7 @@ export const fetchSuggestions = () => {
             let response = await axios.get("/users")
             let currentFollowing = getState().auth.user.following.map(el => el.username)
             let list = response.data.filter(el => !currentFollowing.includes(el.username) && el.username !== getState().auth.user.username)
-            let pictureURL = list.slice(0, 10).map(el => ({...el, picture: `${URL}image/${el.picture}`}))
+            let pictureURL = list.slice(0, 10).map(el => ({...el, picture: `${URL}uploads/${el.picture}`}))
             dispatch(suggestionsRetrieved(pictureURL))
         }
         catch (e) {

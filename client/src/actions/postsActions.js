@@ -53,7 +53,7 @@ export const fetchPosts = (type, username) => {
             else if (type === "profile") {
                 response = await axios.get(`/users/${username}/posts`)
             }
-            posts = response.data.map(el => ({ ...el, author: { ...el.author, picture: `${URL}image/${el.author.picture}` } }))
+            posts = response.data.map(el => ({ ...el, author: { ...el.author, picture: `${URL}uploads/${el.author.picture}` } }))
             dispatch(feedRetrieved(posts))
         }
         catch (e) {

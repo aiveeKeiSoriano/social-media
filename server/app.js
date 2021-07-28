@@ -19,6 +19,7 @@ const app = express()
 app.use(morgan("dev"))
 app.use(express.json())
 app.use(cors())
+app.use(express.static('static'))
 
 mongoose.connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
@@ -55,17 +56,5 @@ app.use("/users", verifyToken, usersRouter)
 app.get("/", (req, res) => {
     res.status(200).sendFile(__dirname + "/README.md")
 })
-
-app.get("/image/:filename", (req, res) => {
-    let filename = req.params.filename
-    let path = __dirname + "/uploads/" + filename
-    res.download(path, (err) => {
-        if (err) {
-            console.log(err, err.message)
-            res.status(500).send("error")
-        }
-    })
-})
-
 
 app.listen(PORT, () => console.log("Listening to http://localhost:" + PORT))

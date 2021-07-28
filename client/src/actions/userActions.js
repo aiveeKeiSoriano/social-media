@@ -93,7 +93,7 @@ export const getUser = () => {
     return async (dispatch) => {
         try {
             let response = await axios.get("/me")
-            response.data.picture = `${URL}image/${response.data.picture}`
+            response.data.picture = `${URL}uploads/${response.data.picture}`
             dispatch(userRetrieved(response.data))
         }
         catch (e) {

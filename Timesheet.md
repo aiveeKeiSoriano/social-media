@@ -89,11 +89,13 @@ Estimated Time: 5hrs
 
 ### Part 10
     27 Jul '21
-    14:43 - 15:30 : Implement like/unlike in both feed and profile
-    16:08 - 16:31 : Prevent multiple fast click on like and follow
+    14:43 - 15:30 : Implement like/unlike in both feed and profile (47m)
+    16:08 - 16:31 : Prevent multiple fast click on like and follow (23m)
 
 ### MISC
     27 Jul '21
-    16:31 - 16:43 : Enable add new post in profile
-    17:03 - 18:09 : Implement delete post 
-    18:30 - 19:29 : Wrote readme files
+    16:31 - 16:43 : Enable add new post in profile (12m)
+    17:03 - 18:09 : Implement delete post (1h6m)
+    18:30 - 19:29 : Wrote readme files (59m)
+
+Milestone 3 completed in around 6 hours 53 mins.

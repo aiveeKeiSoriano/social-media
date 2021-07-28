@@ -43,7 +43,7 @@ export default function Profile() {
     let fetchUser = async () => {
         try {
             let response = await axios.get(`/users/${params.username}`)
-            response.data.picture = `${URL}image/${response.data.picture}`
+            response.data.picture = `${URL}uploads/${response.data.picture}`
             setUser(response.data)
         }
         catch (e) {
