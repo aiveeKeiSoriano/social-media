@@ -13,6 +13,7 @@ const authRouter = require("./routes/auth")
 const meRouter = require("./routes/me")
 const postRouter = require("./routes/post")
 const usersRouter = require("./routes/users")
+const pingRouter = require("./routes/ping")
 
 const app = express()
 
@@ -49,6 +50,7 @@ const verifyToken = (req, res, next) => {
 }
 
 app.use("/auth", authRouter)
+app.use("/ping", pingRouter)
 app.use("/me", verifyToken, meRouter)
 app.use("/posts", verifyToken, postRouter)
 app.use("/users", verifyToken, usersRouter)
