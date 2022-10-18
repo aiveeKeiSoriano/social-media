@@ -5,7 +5,7 @@ const pingController = require("../controllers/pingController")
 const router = express.Router()
 
 router.post("/", asyncHandler(async (req, res) => {
-    await pingController.createPing()
+    await pingController.createPing(req.body)
     res.status(200).send({message: "Success"})
 }))
 
