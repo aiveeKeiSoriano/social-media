@@ -6,12 +6,12 @@ const router = express.Router()
 
 router.post("/order-confirmation", asyncHandler(async (req, res) => {
     const result = await klaviyoController.sendOrderConfirmation(req.body)
-    res.status(200).send(result)
+    res.status(200).send({message: "success"})
 }))
 
 router.post("/payment-confirmation", asyncHandler(async (req, res) => {
     const result = await klaviyoController.sendPaymentConfirmation(req.body)
-    res.status(200).send(result)
+    res.status(200).send({message: "success"})
 }))
 
 router.use((err, req, res, next) => {
