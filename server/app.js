@@ -14,6 +14,7 @@ const meRouter = require("./routes/me")
 const postRouter = require("./routes/post")
 const usersRouter = require("./routes/users")
 const pingRouter = require("./routes/ping")
+const klaviyoRouter = require("./routes/klaviyo")
 
 const app = express()
 
@@ -54,6 +55,7 @@ app.use("/ping", pingRouter)
 app.use("/me", verifyToken, meRouter)
 app.use("/posts", verifyToken, postRouter)
 app.use("/users", verifyToken, usersRouter)
+app.use("/klaviyo", klaviyoRouter)
 
 app.get("/", (req, res) => {
     res.status(200).sendFile(__dirname + "/README.md")
